@@ -1,7 +1,12 @@
-function sayHello() {
-  return function () {
-    return 'Hello World'
-  }
-}
+// Normal programming
+let input = ' Range Quest   '
+let output = 'div' + input.trim(input) + '</div>'
+console.log('Normal: ', output)
 
-console.log(sayHello()())
+// Function composition in Functional Programming
+// Think in functional blocks and compose them together to solve a problem
+const trimStr = str => str.trim()
+const wrapInDiv = str => `<div>${str}</div>`
+
+output = wrapInDiv(trimStr(input))
+console.log('Function Composition: ', output)
