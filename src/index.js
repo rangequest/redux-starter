@@ -1,10 +1,25 @@
-import { pipe } from 'lodash/fp'
-const input = { tag: 'JAVASCRIPT' }
+import { produce } from 'immer'
 
-const getTag = input => input.tag
-const toLower = input => input.toLowerCase()
-const addParas = input => `(${input})`
+const recipe = {
+  name: 'Spaghetti Bolognese',
+  ingredients: ['egg', 'salt'],
+}
 
-const transform = pipe(getTag, toLower, addParas)
-const output = transform(input)
-console.log('output: ', output)
+const added = {
+  ...recipe,
+  ingredients: [...recipe.ingredients, 'cream'],
+}
+
+console.log(added)
+
+const replaced = {
+  ...recipe,
+  ingredients: recipe.ingredients.map(i => (i === 'egg' ? 'egg white' : i)),
+}
+console.log(replaced)
+
+const removed = {
+  ...recipe,
+  ingredients: recipe.ingredients.filter(i => i !== 'egg'),
+}
+console.log(removed)
