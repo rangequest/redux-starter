@@ -1,25 +1,21 @@
-import { produce } from 'immer'
+import store from './store'
 
-const recipe = {
-  name: 'Spaghetti Bolognese',
-  ingredients: ['egg', 'salt'],
-}
+const unsubscribe = store.subscribe(() => {
+  console.log('Current State: ', store.getState())
+})
 
-const added = {
-  ...recipe,
-  ingredients: [...recipe.ingredients, 'cream'],
-}
+store.dispatch({
+  type: 'bugAdded',
+  payload: {
+    description: 'This is a new bug.',
+  },
+})
 
-console.log(added)
+unsubscribe()
 
-const replaced = {
-  ...recipe,
-  ingredients: recipe.ingredients.map(i => (i === 'egg' ? 'egg white' : i)),
-}
-console.log(replaced)
-
-const removed = {
-  ...recipe,
-  ingredients: recipe.ingredients.filter(i => i !== 'egg'),
-}
-console.log(removed)
+store.dispatch({
+  type: 'bugRemoved',
+  payload: {
+    id: 1,
+  },
+})
