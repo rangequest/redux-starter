@@ -1,1 +1,7 @@
-console.log("Hello World!");
+function sayHello() {
+  return function () {
+    return 'Hello World'
+  }
+}
+
+console.log(sayHello()())
