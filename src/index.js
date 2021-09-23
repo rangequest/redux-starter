@@ -1,9 +1,10 @@
-import { produce } from 'immer'
+import { pipe } from 'lodash/fp'
+const input = { tag: 'JAVASCRIPT' }
 
-let book = { title: 'Harry Potter' }
-console.log(book)
-console.log(
-  produce(book, draftBook => {
-    draftBook.isPublished = true
-  })
-)
+const getTag = input => input.tag
+const toLower = input => input.toLowerCase()
+const addParas = input => `(${input})`
+
+const transform = pipe(getTag, toLower, addParas)
+const output = transform(input)
+console.log('output: ', output)
