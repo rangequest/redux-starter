@@ -20,6 +20,7 @@
     "immutable": "^4.0.0-rc.15",
     "lodash": "^4.17.21",
     "redux": "^4.1.1",
-    "redux-devtools-extension": "^2.13.9"
+    "redux-devtools-extension": "^2.13.9",
+    "reselect": "^4.0.0"
   }
 }
