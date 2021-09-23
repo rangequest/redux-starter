@@ -1,22 +1,19 @@
-import { compose, pipe } from 'lodash/fp'
+const person = {
+  name: 'John',
+  profession: 'Engineer',
+  address: {
+    country: 'US',
+    city: 'San Francisco',
+  },
+}
+console.log(person)
+person.address.country = 'AU'
 
-// Normal programming
-let input = ' Range Quest   '
-let output = 'div' + input.trim(input) + '</div>'
-// console.log('Normal: ', output)
+const person2 = person
+console.log(person2)
 
-// Function composition in Functional Programming
-// Think in functional blocks and compose them together to solve a problem
-const trimStr = str => str.trim()
-const wrapInDiv = str => `<div>${str}</div>`
-const wrap = type => str => `<${type}>${str}</${type}>`
-const toLowerCase = str => str.toLowerCase()
+const person3 = Object.assign({}, person, { name: 'Bob', age: 30, address: Object.assign({}, person.address, { city: 'LLLL' }) })
+console.log(person3)
 
-// output = wrapInDiv(trimStr(input))
-// console.log('Function Composition: ', output)
-
-// using loDash
-const transform = pipe(trimStr, toLowerCase, wrap('span'))
-//const transform = compose(wrapInDiv, trimStr)
-output = transform(input)
-console.log('Using lodash: ', output)
+const person4 = { ...person, address: { ...person.address, country: 'MO' }, name: 'Amy' }
+console.log(person4)
