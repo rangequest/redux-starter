@@ -1,4 +1,9 @@
-import { Map } from 'immutable'
+import { produce } from 'immer'
 
-let book = Map({ title: 'Harry Potter' })
-console.log(book.toJS())
+let book = { title: 'Harry Potter' }
+console.log(book)
+console.log(
+  produce(book, draftBook => {
+    draftBook.isPublished = true
+  })
+)
