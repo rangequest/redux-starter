@@ -1,10 +1,25 @@
 import configureStore from './store/configureStore'
-import { bugAdded, bugResolved, getUnresolvedBugs, loadBugs, addBug } from './store/bugs'
+import { getUnresolvedBugs, addBug, resolveBug, assignBugToUser } from './store/bugs'
 import { projectAdded, projectCompleted } from './store/projects'
+import { userAdded } from './store/users'
 
 const store = configureStore()
 
-store.dispatch(addBug({ description: 'a' }))
+store.dispatch(userAdded({ name: 'new User' }))
+
+store.dispatch(addBug({ description: 'new Bug' }))
+
+setTimeout(() => {
+  const unResolvedBugs = getUnresolvedBugs(store.getState())
+  const uRId = unResolvedBugs[0].id
+  console.log('Unresolved Bug Id', uRId)
+
+  store.dispatch(assignBugToUser(uRId, 4))
+
+  setTimeout(() => store.dispatch(resolveBug(uRId)), 100)
+}, 100)
+
+// store.dispatch(addBug({ description: 'a' }))
 
 // store.dispatch(loadBugs())
 
