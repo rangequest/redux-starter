@@ -1,12 +1,14 @@
 import configureStore from './store/configureStore'
-import { bugAdded, bugResolved, getUnresolvedBugs, loadBugs } from './store/bugs'
+import { bugAdded, bugResolved, getUnresolvedBugs, loadBugs, addBug } from './store/bugs'
 import { projectAdded, projectCompleted } from './store/projects'
 
 const store = configureStore()
 
-store.dispatch(loadBugs())
+store.dispatch(addBug({ description: 'a' }))
 
-setTimeout(() => store.dispatch(loadBugs()), 2000)
+// store.dispatch(loadBugs())
+
+// setTimeout(() => store.dispatch(loadBugs()), 2000)
 
 // store.dispatch(
 //   actions.apiCallBegan({
