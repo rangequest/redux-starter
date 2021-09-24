@@ -1,6 +1,6 @@
 import axios from 'axios'
 import MockAdapter from 'axios-mock-adapter'
-import { addBug, getUnresolvedBugs, loadBugs, resolveBug } from '../bugs'
+import { addBug, assignBugToUser, getUnresolvedBugs, loadBugs, resolveBug } from '../bugs'
 import configureStore from '../configureStore'
 
 describe('bugsSliceSocial', () => {
@@ -20,6 +20,18 @@ describe('bugsSliceSocial', () => {
         list: [],
       },
     },
+  })
+
+  describe('assign bug to a user', () => {
+    it('should assign a bug to a user', async () => {
+      fakeAxios.onPost('/bugs').reply(200, { id: 3, description: 'a' })
+      fakeAxios.onPatch('/bugs/3').reply(200, { id: 3, userId: 6 })
+
+      await store.dispatch(addBug({ description: 'a' }))
+      const x = await store.dispatch(assignBugToUser(3, 6))
+
+      expect(bugsSlice().list[0].user).toBe(6)
+    })
   })
 
   describe('loading bugs', () => {
