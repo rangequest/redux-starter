@@ -73,7 +73,7 @@ export const loadBugs = () => (dispatch, getState) => {
   const diffInMinutes = moment().diff(moment(lastFetch), 'minute')
   if (diffInMinutes < 10) return
 
-  dispatch(
+  return dispatch(
     apiCallBegan({
       url,
       onFailure: bugsRequestFailed.type,
@@ -111,6 +111,6 @@ export const assignBugToUser = (bugId, userId) =>
   })
 
 export const getUnresolvedBugs = createSelector(
-  state => state.entities.bugs.list,
-  bugs => bugs.filter(bug => !bug.resolved)
+  state => state.entities.bugs,
+  bugs => bugs.list.filter(bug => !bug.resolved)
 )
