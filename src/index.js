@@ -5,6 +5,9 @@ import { projectAdded, projectCompleted } from './store/projects'
 const store = configureStore()
 
 store.dispatch(loadBugs())
+
+setTimeout(() => store.dispatch(loadBugs()), 2000)
+
 // store.dispatch(
 //   actions.apiCallBegan({
 //     url: '/bugs',
