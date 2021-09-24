@@ -1,6 +1,6 @@
 const error = store => next => action => {
   if (action.type === 'error') console.log('Tostify: ', action.payload.message)
-  next(action)
+  else return next(action)
 }
 
 export default error
