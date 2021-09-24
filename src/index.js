@@ -1,8 +1,16 @@
 import configureStore from './store/configureStore'
-import { bugAdded, bugResolved, getUnresolvedBugs } from './store/bugs'
+import { bugAdded, bugResolved, getUnresolvedBugs, loadBugs } from './store/bugs'
 import { projectAdded, projectCompleted } from './store/projects'
 
 const store = configureStore()
+
+store.dispatch(loadBugs())
+// store.dispatch(
+//   actions.apiCallBegan({
+//     url: '/bugs',
+//     onSuccess: 'bugs/bugsReceived',
+//   })
+// )
 
 // store.subscribe(() => {
 //   console.log('Store changed: ', store.getState())
@@ -12,7 +20,7 @@ const store = configureStore()
 //   dispatch({ type: 'bugsReceived', bugs: [1, 2, 3] })
 // })
 
-store.dispatch({ type: 'error', payload: { message: 'An error occured' } })
+// store.dispatch({ type: 'error', payload: { message: 'An error occured' } })
 
 // store.dispatch(projectAdded({ name: 'Project1' }))
 // store.dispatch(projectAdded({ name: 'Project1' }))
