@@ -4,13 +4,15 @@ import { projectAdded, projectCompleted } from './store/projects'
 
 const store = configureStore()
 
-store.subscribe(() => {
-  console.log('Store changed: ', store.getState())
-})
+// store.subscribe(() => {
+//   console.log('Store changed: ', store.getState())
+// })
 
-store.dispatch((dispatch, getState) => {
-  dispatch({ type: 'bugsReceived', bugs: [1, 2, 3] })
-})
+// store.dispatch((dispatch, getState) => {
+//   dispatch({ type: 'bugsReceived', bugs: [1, 2, 3] })
+// })
+
+store.dispatch({ type: 'error', payload: { message: 'An error occured' } })
 
 // store.dispatch(projectAdded({ name: 'Project1' }))
 // store.dispatch(projectAdded({ name: 'Project1' }))
