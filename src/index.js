@@ -8,7 +8,12 @@ store.subscribe(() => {
   console.log('Store changed: ', store.getState())
 })
 
-store.dispatch(projectAdded({ name: 'Project1' }))
+store.dispatch((dispatch, getState) => {
+  dispatch({ type: 'bugsReceived', bugs: [1, 2, 3] })
+})
+
+// store.dispatch(projectAdded({ name: 'Project1' }))
+// store.dispatch(projectAdded({ name: 'Project1' }))
 // store.dispatch(projectAdded({ name: 'Project2' }))
 // store.dispatch(projectAdded({ name: 'Project3' }))
 
@@ -20,4 +25,4 @@ store.dispatch(projectAdded({ name: 'Project1' }))
 
 // store.dispatch(bugResolved({ id: 1 }))
 
-console.log(getUnresolvedBugs(store.getState()))
+// console.log(getUnresolvedBugs(store.getState()))
